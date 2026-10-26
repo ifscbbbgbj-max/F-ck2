@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hand Wave Animation</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #030403;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+svg {
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+}
+
+.line {
+  fill: none;
+  stroke: #edf5f0;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 3000;
+  stroke-dashoffset: 3000;
+  filter: drop-shadow(0 0 3px #d9fff0);
+  animation: draw 6s ease forwards;
+}
+
+.base {
+  stroke-width: 2;
+  animation-duration: 1.5s;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<svg viewBox="0 0 900 530">
+
+  <!-- Bottom line -->
+  <path class="line base"
+        d="M10 505 H890"/>
+
+  <!-- Hand waveform -->
+  <path class="line" d="
+    M10 425
+    L25 416 35 438 48 427 60 440
+    75 425 88 435 102 421 116 437
+    130 428 145 440 160 425 175 434
+    190 427 205 438 220 430 235 437
+    250 428 265 435 280 425 295 432
+    310 422 325 431 340 416 355 423
+    370 398 385 370 398 342
+
+    C398 310 402 280 415 258
+    L438 230 451 214 463 192
+
+    C470 174 485 168 493 181
+    L496 284
+    C496 300 501 307 506 307
+    C511 307 512 294 512 278
+
+    L512 180
+    C512 155 525 143 539 145
+    C553 146 560 159 560 180
+    L560 287
+    C560 303 565 310 570 309
+    C575 307 575 295 575 279
+
+    L575 48
+    C575 26 586 15 601 15
+    C616 15 626 28 626 48
+    L626 279
+    C626 297 630 305 635 305
+    C641 305 641 292 641 278
+
+    L641 187
+    C641 164 652 153 665 155
+    C678 157 685 171 685 191
+    L685 301
+    C685 317 690 324 696 322
+    C702 320 703 307 703 294
+
+    L703 217
+    C703 198 713 188 725 193
+    C738 198 741 216 741 236
+    L741 333
+
+    C741 360 750 382 762 395
+    L784 405 803 408 819 421
+    L832 434 844 429 856 441
+    L871 445 883 456 892 450
+  "/>
+
+</svg>
+
+<script>
+function replay() {
+  document.querySelectorAll(".line").forEach(line => {
+    line.style.animation = "none";
+    line.getBoundingClientRect();
+    line.style.animation = "";
+  });
+}
+
+document.addEventListener("click", replay);
+document.addEventListener("touchstart", replay);
+</script>
+
+</body>
+</html>
